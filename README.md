@@ -25,46 +25,12 @@ Everything runs locally. Your data never leaves your machine.
 
 ## Features
 
-### Natural Language Querying
-Type what you want. Agent M figures out the query.
-
-> *"Show me all orders from last week where the total is above $500"*
-> *"Find users who signed up in January but never made a purchase"*
-> *"Which products have low stock and high sales velocity?"*
-
-The AI understands your database schema, conversation history, and picks the right operation — `find`, `aggregate`, `SELECT`, `JOIN`, or a full script. Write operations require your explicit confirmation before anything changes.
-
-### AI Error Repair
-When a query fails, Agent M analyzes the error, understands why it happened, and suggests a corrected query — with an explanation.
-
-### Dashboards & Visualization
-Build interactive dashboards with drag-and-drop widgets. Every query result can become a widget:
-
-| Chart Type | Chart Type | Chart Type |
-|---|---|---|
-| Bar Chart | Line Chart | Area Chart |
-| Stacked Area | Multi-Line | Scatter Plot |
-| Pie Chart | Donut Chart | Summary Card |
-| Data Table | Map (geo) | — |
-
-Dashboards support auto-refresh (30s → 1hr) and AI-generated widget descriptions.
-
-### Spreadsheet → Database Import
-Drop in an Excel or CSV file. Agent M:
-1. Analyzes the data structure and detects relationships between sheets
-2. Designs an optimized database schema (collections/tables, field types, indexes)
-3. Creates the database and imports your data
-
-Supports `.xlsx`, `.xls`, and `.csv` up to 500MB.
-
-### AI Field Descriptions
-For any collection or table, Agent M can read sample field values and generate plain-English descriptions for every field — useful for onboarding and documentation.
-
-### Metadata Generation
-For databases with 10+ collections, Agent M generates AI-powered metadata that gives the query engine a deeper understanding of your data, improving query accuracy.
-
-### Full Query History & Favorites
-Every query is saved locally. Browse past queries, re-run them, or bookmark the ones you use most.
+- **Natural language querying** — Describe what you want, get back a query and results. No SQL or MongoDB shell required.
+- **Dashboards** — Turn any query into a chart, table, summary card, or map. Drag, drop, and auto-refresh.
+- **Spreadsheet import** — Drop an Excel or CSV file. AI designs the schema and creates the database for you.
+- **AI error repair** — When a query fails, the AI explains why and suggests a fix.
+- **Field descriptions** — Generate plain-English descriptions for every field in your database from sample data.
+- **Query history & favorites** — Every query is saved locally. Bookmark the ones you reuse.
 
 ---
 

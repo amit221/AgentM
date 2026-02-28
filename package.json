@@ -1,0 +1,33 @@
+{
+  "name": "agent-m",
+  "version": "1.0.0",
+  "description": "Agent M - AI-Powered Database Desktop App",
+  "private": true,
+  "workspaces": [
+    "app",
+    "backend"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:app\"",
+    "dev:app": "npm run dev --workspace=app",
+    "dev:backend": "npm run dev --workspace=backend",
+    "install:all": "npm install"
+  },
+  "keywords": [
+    "mongodb",
+    "postgresql",
+    "electron",
+    "react",
+    "ai",
+    "database"
+  ],
+  "author": "Agent M",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/amit221/AgentM.git"
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.0"
+  }
+}

@@ -117,7 +117,7 @@ cp .env.example .env
 npm install
 
 # Start the app
-npm run dev
+npm start
 ```
 
 The backend starts on port `8787`. The Electron app opens automatically.
@@ -184,7 +184,7 @@ AgentM/
 
 ```bash
 # Start everything (backend + Electron app)
-npm run dev
+npm start
 
 # Start only the backend
 npm run dev:backend
@@ -245,12 +245,7 @@ The backend only handles AI calls. All database operations happen in the Electro
 
 Contributions are welcome — bug fixes, new features, database adapters, or new AI providers.
 
-1. Fork the repo
-2. Create a branch: `git checkout -b my-feature`
-3. Make your changes and commit
-4. Open a pull request
-
-Please open an issue first for large changes so we can discuss the approach.
+See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on how to get started.
 
 ---
 

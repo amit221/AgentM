@@ -8,25 +8,29 @@ import { z } from 'zod';
 
 const router = Router();
 
-// GET /models - Get available AI models
+// GET /models - Get suggested AI models
+// Any valid OpenAI or Gemini model name can be used — these are just defaults shown in the UI.
+// Provider is auto-detected from the model name: "gpt"/"o3"/"o4" → OpenAI, "gemini" → Google.
 router.get('/models', (req, res) => {
   try {
     const models = [
       { id: 'gpt-4.1', name: 'GPT-4.1', provider: 'openai', tier: 'standard' },
       { id: 'gpt-4.1-mini', name: 'GPT-4.1 Mini', provider: 'openai', tier: 'mini' },
       { id: 'gpt-4.1-nano', name: 'GPT-4.1 Nano', provider: 'openai', tier: 'nano' },
-      { id: 'gpt-5.1', name: 'GPT-5.1', provider: 'openai', tier: 'flagship' },
+      { id: 'gpt-4o', name: 'GPT-4o', provider: 'openai', tier: 'standard' },
+      { id: 'gpt-4o-mini', name: 'GPT-4o Mini', provider: 'openai', tier: 'mini' },
       { id: 'o3', name: 'o3', provider: 'openai', tier: 'reasoning' },
       { id: 'o4-mini', name: 'o4-mini', provider: 'openai', tier: 'reasoning' },
-      { id: 'claude-sonnet-4-20250514', name: 'Claude Sonnet 4', provider: 'anthropic', tier: 'standard' },
       { id: 'gemini-2.5-flash', name: 'Gemini 2.5 Flash', provider: 'google', tier: 'mini' },
       { id: 'gemini-2.5-pro', name: 'Gemini 2.5 Pro', provider: 'google', tier: 'standard' },
+      { id: 'gemini-2.0-flash', name: 'Gemini 2.0 Flash', provider: 'google', tier: 'mini' },
     ];
 
     res.json({
       success: true,
       models,
-      defaultModel: 'gpt-4.1-mini'
+      defaultModel: 'gpt-4.1-mini',
+      note: 'Any OpenAI or Google Gemini model name can be used. These are suggested defaults.'
     });
   } catch (err: any) {
     logger.error('Failed to get models', { error: err?.message });

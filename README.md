@@ -48,14 +48,14 @@ Multiple connections can be open simultaneously. Each connection has its own con
 
 ## Supported AI Models
 
-Agent M routes requests to whichever model you configure. At least one API key is required.
+Agent M works with **any OpenAI or Google Gemini model**. Set your API key and type any model name — the provider is auto-detected from the name.
 
-**OpenAI**
-- `gpt-4.1` · `gpt-4.1-mini` · `gpt-4.1-nano`
-- `o3` · `o4-mini`
+| Provider | API Key env var | Example models |
+|---|---|---|
+| **OpenAI** | `OPENAI_API_KEY` | `gpt-4o`, `gpt-4o-mini`, `gpt-4.1`, `o3`, `o4-mini`, any future model |
+| **Google** | `GEMINI_API_KEY` | `gemini-2.5-pro`, `gemini-2.5-flash`, `gemini-2.0-flash`, any future model |
 
-**Google**
-- `gemini-2.5-flash` · `gemini-2.5-pro`
+The UI shows a list of suggested models, but you can type any model ID that your API key has access to.
 
 Default: `gpt-4.1-mini`
 

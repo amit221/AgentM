@@ -17,10 +17,9 @@ class AIConnector {
   /**
    * Get database design recommendations from AI backend
    * @param {object} analysisData - The analysis data from file analyzer
-   * @param {string} accessToken - The access token for authentication
    * @param {string} databaseType - The target database type
    */
-  async getDesignRecommendation(analysisData, accessToken = null, databaseType = DEFAULT_DATABASE) {
+  async getDesignRecommendation(analysisData, databaseType = DEFAULT_DATABASE) {
     const config = getDatabaseConfig(databaseType);
     
     console.log('🤖 Sending analysis to AI backend...');
@@ -30,13 +29,6 @@ class AIConnector {
     const headers = {
       'Content-Type': 'application/json',
     };
-    
-    if (accessToken) {
-      headers['Authorization'] = `Bearer ${accessToken}`;
-      console.log('🔐 Including access token in request');
-    } else {
-      console.warn('⚠️ No access token provided - request may fail with 401');
-    }
 
     const requestBody = {
       ...analysisData,

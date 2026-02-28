@@ -426,34 +426,6 @@ class StorageManager {
     return await this.settings.clearAllCollectionSchemas();
   }
 
-  // Authentication token storage methods
-  async saveAuthToken(token) {
-    try {
-      return await this.settings.saveAuthToken(token);
-    } catch (error) {
-      console.error('❌ Error saving auth token:', error);
-      return { success: false, error: error.message };
-    }
-  }
-
-  async loadAuthToken() {
-    try {
-      return await this.settings.loadAuthToken();
-    } catch (error) {
-      console.error('❌ Error loading auth token:', error);
-      return { success: false, error: error.message };
-    }
-  }
-
-  async clearAuthToken() {
-    try {
-      return await this.settings.clearAuthToken();
-    } catch (error) {
-      console.error('❌ Error clearing auth token:', error);
-      return { success: false, error: error.message };
-    }
-  }
-
   // ===========================================
   // UTILITY METHODS
   // ===========================================

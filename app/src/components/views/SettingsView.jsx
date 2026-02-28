@@ -252,7 +252,7 @@ const SettingsView = () => {
                       AI Field Descriptions
                     </Typography>
                     <Typography variant="caption" color="text.secondary">
-                      Generate AI-powered descriptions for database fields (costs 3 credits per collection)
+                      Generate AI-powered descriptions for database fields
                     </Typography>
                   </Box>
                   <Checkbox

@@ -763,8 +763,6 @@ ${suggestions.join('\n')}
     // Agent: stateless decide call
     agentDecide: async (conversationId, userInput, database, allowWrites, relevantSchemas, lastMessages, relevantIndexes, conversation, defaultLimit, databaseType = 'mongodb', pgMetadata = null) => {
       try {
-        // No frontend credit checking - let backend handle it
-
         const summary = conversation?.summary || '';
         const agentState = conversation?.agentState || '';
         
@@ -843,8 +841,6 @@ ${suggestions.join('\n')}
           currentGeneratedQuery: data?.query?.text || '',
           includeResultsInNextMessage: false // Clear flag after use
         });
-
-        // Plan data refresh removed - backend handles all credit logic
 
         return data;
       } catch (err) {

@@ -73,10 +73,6 @@ class SettingsStorage {
       if (settingsToSave.geminiApiKey) {
         settingsToSave.geminiApiKey = this.encrypt(settingsToSave.geminiApiKey);
       }
-      if (settingsToSave.accessToken) {
-        settingsToSave.accessToken = this.encrypt(settingsToSave.accessToken);
-      }
-
       fs.writeFileSync(this.settingsFile, JSON.stringify(settingsToSave, null, 2));
       return { success: true };
     } catch (error) {
@@ -101,10 +97,6 @@ class SettingsStorage {
       if (settings.geminiApiKey) {
         settings.geminiApiKey = this.decrypt(settings.geminiApiKey);
       }
-      if (settings.accessToken) {
-        settings.accessToken = this.decrypt(settings.accessToken);
-      }
-
       return { success: true, settings };
     } catch (error) {
       console.error('Error loading settings:', error);
@@ -451,60 +443,6 @@ class SettingsStorage {
     }
   }
 
-  // Authentication token storage methods
-  async saveAuthToken(token) {
-    try {
-      const tokenFile = path.join(this.userDataPath, 'auth_token.dat');
-      
-      // If token is already a Buffer (encrypted), save it directly
-      if (Buffer.isBuffer(token)) {
-        fs.writeFileSync(tokenFile, token);
-      } else {
-        // If it's a string, save as-is (for fallback when encryption not available)
-        fs.writeFileSync(tokenFile, token, 'utf8');
-      }
-      
-      console.log('🔐 Auth token saved securely');
-      return { success: true };
-    } catch (error) {
-      console.error('Error saving auth token:', error);
-      return { success: false, error: error.message };
-    }
-  }
-
-  async loadAuthToken() {
-    try {
-      const tokenFile = path.join(this.userDataPath, 'auth_token.dat');
-      
-      if (!fs.existsSync(tokenFile)) {
-        return { success: true, token: null };
-      }
-      
-      const token = fs.readFileSync(tokenFile);
-      
-      console.log('🔐 Auth token loaded');
-      return { success: true, token };
-    } catch (error) {
-      console.error('Error loading auth token:', error);
-      return { success: false, error: error.message };
-    }
-  }
-
-  async clearAuthToken() {
-    try {
-      const tokenFile = path.join(this.userDataPath, 'auth_token.dat');
-      
-      if (fs.existsSync(tokenFile)) {
-        fs.unlinkSync(tokenFile);
-        console.log('🔐 Auth token cleared');
-      }
-      
-      return { success: true };
-    } catch (error) {
-      console.error('Error clearing auth token:', error);
-      return { success: false, error: error.message };
-    }
-  }
 }
 
 module.exports = SettingsStorage;

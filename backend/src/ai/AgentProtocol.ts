@@ -72,7 +72,7 @@ export const DecideRequestSchema = z.object({
     .default({}),
   agent_state: z.string().optional().default(''),
   client_info: z.object({ app_version: z.string().optional(), capabilities: z.array(z.string()).optional() }).optional(),
-  model: z.string().optional(), // Optional: AI model to use (must be in pricing config)
+  model: z.string().optional(),
 });
 
 export type DecideRequest = z.infer<typeof DecideRequestSchema>;
@@ -87,7 +87,7 @@ export const ErrorRequestSchema = z.object({
     database: z.string().optional().default(''),
     allow_writes: z.boolean().optional().default(true),
   }),
-  model: z.string().optional(), // Optional: AI model to use (must be in pricing config)
+  model: z.string().optional(),
   knowledge: z
     .object({
       collection_schemas: z.record(z.any()).optional(),

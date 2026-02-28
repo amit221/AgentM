@@ -131,7 +131,7 @@ class SpreadsheetService {
       const databaseType = connectionId ? this.dbConnection.getDatabaseType(connectionId) : 'mongodb';
       console.log(`📊 Target database type: ${databaseType || 'mongodb'} (raw: ${databaseType})`);
       
-      const aiResponse = await this.aiConnector.getDesignRecommendation(result.analysisData, options.accessToken, databaseType || 'mongodb');
+      const aiResponse = await this.aiConnector.getDesignRecommendation(result.analysisData, databaseType || 'mongodb');
       
       console.log('🤖 AI Response received:');
       console.log('  - Success:', aiResponse.success);
@@ -299,7 +299,7 @@ class SpreadsheetService {
         const databaseType = connectionId ? this.dbConnection.getDatabaseType(connectionId) : 'mongodb';
         console.log(`📊 Target database type: ${databaseType || 'mongodb'} (raw: ${databaseType})`);
         
-        const aiResponse = await this.aiConnector.getDesignRecommendation(result.analysisData, options.accessToken, databaseType || 'mongodb');
+        const aiResponse = await this.aiConnector.getDesignRecommendation(result.analysisData, databaseType || 'mongodb');
         
         console.log('🤖 AI Response received:');
         console.log('  - Success:', aiResponse.success);
@@ -336,7 +336,7 @@ class SpreadsheetService {
         const databaseType = connectionId ? this.dbConnection.getDatabaseType(connectionId) : 'mongodb';
         console.log(`📊 Target database type: ${databaseType || 'mongodb'} (raw: ${databaseType})`);
         
-        const aiResponse = await this.aiConnector.getDesignRecommendation(result.analysisData, options.accessToken, databaseType || 'mongodb');
+        const aiResponse = await this.aiConnector.getDesignRecommendation(result.analysisData, databaseType || 'mongodb');
         
         console.log('🤖 AI Response received (preview):');
         console.log('  - Success:', aiResponse.success);

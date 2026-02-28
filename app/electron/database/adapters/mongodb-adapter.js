@@ -1271,24 +1271,6 @@ class MongoDBAdapter extends BaseAdapter {
       const { getBackendUrl } = require('../../config/urls.cjs');
       const fetch = require('node-fetch');
       
-      // Load access token from settings
-      let accessToken = null;
-      if (this.settingsStorage) {
-        const settingsResult = await this.settingsStorage.loadSettings();
-        if (settingsResult.success && settingsResult.settings) {
-          accessToken = settingsResult.settings.accessToken;
-        }
-      }
-
-      if (!accessToken) {
-        console.warn('⚠️ No access token found in settings, field descriptions request will fail');
-        return {
-          success: false,
-          descriptions: [],
-          error: 'No access token available. Please log in to use AI features.'
-        };
-      }
-      
       const backendUrl = getBackendUrl();
       const apiUrl = `${backendUrl}/api/v1/agent/field-descriptions`;
       
@@ -1297,29 +1279,19 @@ class MongoDBAdapter extends BaseAdapter {
       const response = await fetch(apiUrl, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${accessToken}`
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify({
           collectionName,
           databaseName,
           fieldSamples
         }),
-        timeout: 30000 // 30 second timeout
+        timeout: 30000
       });
 
       if (!response.ok) {
         const errorText = await response.text();
         console.error(`❌ Field descriptions API error (${response.status}):`, errorText);
-        
-        // If 401, the token may have expired
-        if (response.status === 401) {
-          return {
-            success: false,
-            descriptions: [],
-            error: 'Authentication failed. Please log in again to use AI features.'
-          };
-        }
         
         return {
           success: false,
@@ -1351,24 +1323,6 @@ class MongoDBAdapter extends BaseAdapter {
       const { getBackendUrl} = require('../../config/urls.cjs');
       const fetch = require('node-fetch');
       
-      // Load access token from settings
-      let accessToken = null;
-      if (this.settingsStorage) {
-        const settingsResult = await this.settingsStorage.loadSettings();
-        if (settingsResult.success && settingsResult.settings) {
-          accessToken = settingsResult.settings.accessToken;
-        }
-      }
-
-      if (!accessToken) {
-        console.warn('⚠️ No access token found, metadata generation will fail');
-        return {
-          success: false,
-          metadata: null,
-          error: 'No access token available. Please log in to use AI features.'
-        };
-      }
-      
       const backendUrl = getBackendUrl();
       const apiUrl = `${backendUrl}/api/v1/metadata/generate`;
       
@@ -1378,27 +1332,18 @@ class MongoDBAdapter extends BaseAdapter {
       const response = await fetch(apiUrl, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${accessToken}`
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify({
           databaseName,
           collections
         }),
-        timeout: 180000 // 3 minute timeout for metadata (AI can be slow)
+        timeout: 180000
       });
 
       if (!response.ok) {
         const errorText = await response.text();
         console.error(`❌ Metadata API error (${response.status}):`, errorText);
-        
-        if (response.status === 401) {
-          return {
-            success: false,
-            metadata: null,
-            error: 'Authentication failed. Please log in again.'
-          };
-        }
         
         return {
           success: false,

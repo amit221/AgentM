@@ -14,7 +14,7 @@ export function getDefaultSettings() {
     autoExecuteQueries: false,
     saveQueryHistory: true,
     queryTimeout: 60,
-    enableAIFieldDescriptions: false // AI-powered field descriptions (costs credits)
+    enableAIFieldDescriptions: false
   };
 }
 

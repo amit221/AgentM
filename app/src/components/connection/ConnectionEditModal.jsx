@@ -236,7 +236,7 @@ const ConnectionEditModal = ({
       },
       {
         name: 'PostgreSQL Cloud',
-        uri: 'postgresql://username:password@host.cloud.com:5432/mydb'
+        uri: 'postgresql://username:password@host.example.com:5432/mydb'
       }
     ],
     supabase: [
